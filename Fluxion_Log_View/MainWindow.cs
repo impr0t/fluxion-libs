@@ -1,7 +1,10 @@
 using System;
+using System.IO;
 using Gtk;
 using Ca.Fluxion.LogView;
-using System.IO;
+using Ca.Fluxion.LogView.IO;
+using Ca.Fluxion.LogView.Utility;
+using Ca.Fluxion.Managers.Data.Models;
 
 public partial class MainWindow: Gtk.Window
 {
@@ -96,5 +99,15 @@ public partial class MainWindow: Gtk.Window
 	private void RefreshStatistics ()
 	{
 		lblEntriesCount.Text = "Entries: " + (txtLog.Buffer.LineCount - 1);
+	}
+
+	/// <summary>
+	/// Raises the view action activated event.
+	/// </summary>
+	/// <param name="sender">Sender.</param>
+	/// <param name="e">E.</param>
+	protected void OnViewActionActivated (object sender, EventArgs e)
+	{
+		SettingsManager s = new SettingsManager (ConnectionType.Sqlite, "settings");
 	}
 }

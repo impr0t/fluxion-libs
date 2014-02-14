@@ -1,6 +1,8 @@
 using System;
-using Ca.Fluxion.Transports.Data;
+using System.Collections.Generic;
+using System.Text;
 using Ca.Fluxion.Managers.Data.Models;
+using Ca.Fluxion.Transports.Data;
 
 namespace Ca.Fluxion.Managers.Data
 {
@@ -9,13 +11,11 @@ namespace Ca.Fluxion.Managers.Data
 	/// </summary>
 	public abstract class BaseManager<T> : IManager<T>
 	{
+		static List<IDataBus> activeConnections;
 
 		#region Private Fields
 
-		/// <summary>
-		/// Databus interface.
-		/// </summary>
-		private readonly IDataBus dataBus;
+		protected IDataBus dataBus;
 
 		#endregion
 
@@ -28,9 +28,28 @@ namespace Ca.Fluxion.Managers.Data
 		/// <param name="path">Path.</param>
 		protected BaseManager (ConnectionType connectionType, string path)
 		{
+			// ensure active connections is available.
+			if (activeConnections == null) {
+				activeConnections = new List<IDataBus> ();
+			}
+
 			switch (connectionType) {
 			case ConnectionType.Sqlite:
-				dataBus = new SqliteDataBus (path);
+
+				// always try to piggy-back on a connection.
+				foreach (var connection in activeConnections) {
+					if (connection is SqliteDataBus) {
+						if (((SqliteDataBus)connection).DbPath == path) {
+							this.dataBus = connection;
+							break;
+						}
+					}
+				}
+
+				if (dataBus == null) {
+					activeConnections.Add (dataBus = new SqliteDataBus (path, true));
+				}
+
 				break;
 			default:
 				throw new ArgumentOutOfRangeException ();
@@ -38,6 +57,15 @@ namespace Ca.Fluxion.Managers.Data
 		}
 
 		#endregion
+
+		/// <summary>
+		/// Init this instance.
+		/// </summary>
+		protected virtual void Init ()
+		{
+			// intentionally blank.
+			// can be overridden.
+		}
 
 		#region IManager implementation
 

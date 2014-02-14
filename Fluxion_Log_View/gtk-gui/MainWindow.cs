@@ -12,8 +12,8 @@ public partial class MainWindow
 	private global::Gtk.Action ViewAction;
 	private global::Gtk.VBox vbox1;
 	private global::Gtk.MenuBar menubar2;
-	private global::Gtk.Statusbar statusbar3;
-	private global::Gtk.Entry entry3;
+	private global::Gtk.HBox hbox1;
+	private global::Gtk.Entry txtSearch;
 	private global::Gtk.Button btnSearch;
 	private global::Gtk.ScrolledWindow GtkScrolledWindow;
 	private global::Gtk.TextView txtLog;
@@ -63,38 +63,35 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.statusbar3 = new global::Gtk.Statusbar ();
-		this.statusbar3.Name = "statusbar3";
-		this.statusbar3.Spacing = 6;
-		// Container child statusbar3.Gtk.Box+BoxChild
-		this.entry3 = new global::Gtk.Entry ();
-		this.entry3.CanFocus = true;
-		this.entry3.Name = "entry3";
-		this.entry3.IsEditable = true;
-		this.entry3.InvisibleChar = '•';
-		this.statusbar3.Add (this.entry3);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.statusbar3 [this.entry3]));
-		w3.Position = 1;
-		// Container child statusbar3.Gtk.Box+BoxChild
+		this.hbox1 = new global::Gtk.HBox ();
+		this.hbox1.Name = "hbox1";
+		this.hbox1.Spacing = 6;
+		// Container child hbox1.Gtk.Box+BoxChild
+		this.txtSearch = new global::Gtk.Entry ();
+		this.txtSearch.CanFocus = true;
+		this.txtSearch.Name = "txtSearch";
+		this.txtSearch.IsEditable = true;
+		this.txtSearch.InvisibleChar = '•';
+		this.hbox1.Add (this.txtSearch);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.txtSearch]));
+		w3.Position = 0;
+		// Container child hbox1.Gtk.Box+BoxChild
 		this.btnSearch = new global::Gtk.Button ();
-		this.btnSearch.WidthRequest = 75;
 		this.btnSearch.CanFocus = true;
 		this.btnSearch.Name = "btnSearch";
+		this.btnSearch.UseStock = true;
 		this.btnSearch.UseUnderline = true;
-		this.btnSearch.Label = global::Mono.Unix.Catalog.GetString ("Find...");
-		global::Gtk.Image w4 = new global::Gtk.Image ();
-		w4.Pixbuf = global::Stetic.IconLoader.LoadIcon (this, "find", global::Gtk.IconSize.Menu);
-		this.btnSearch.Image = w4;
-		this.statusbar3.Add (this.btnSearch);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.statusbar3 [this.btnSearch]));
-		w5.Position = 2;
+		this.btnSearch.Label = "gtk-find";
+		this.hbox1.Add (this.btnSearch);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.btnSearch]));
+		w4.Position = 1;
+		w4.Expand = false;
+		w4.Fill = false;
+		this.vbox1.Add (this.hbox1);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+		w5.Position = 1;
 		w5.Expand = false;
 		w5.Fill = false;
-		this.vbox1.Add (this.statusbar3);
-		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar3]));
-		w6.Position = 1;
-		w6.Expand = false;
-		w6.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
 		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
@@ -106,8 +103,8 @@ public partial class MainWindow
 		this.txtLog.Editable = false;
 		this.GtkScrolledWindow.Add (this.txtLog);
 		this.vbox1.Add (this.GtkScrolledWindow);
-		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
-		w8.Position = 2;
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+		w7.Position = 2;
 		// Container child vbox1.Gtk.Box+BoxChild
 		this.statusbar2 = new global::Gtk.Statusbar ();
 		this.statusbar2.Name = "statusbar2";
@@ -117,15 +114,15 @@ public partial class MainWindow
 		this.lblEntriesCount.Name = "lblEntriesCount";
 		this.lblEntriesCount.LabelProp = global::Mono.Unix.Catalog.GetString ("25 Entries");
 		this.statusbar2.Add (this.lblEntriesCount);
-		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.lblEntriesCount]));
-		w9.Position = 1;
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.statusbar2 [this.lblEntriesCount]));
+		w8.Position = 1;
+		w8.Expand = false;
+		w8.Fill = false;
+		this.vbox1.Add (this.statusbar2);
+		global::Gtk.Box.BoxChild w9 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar2]));
+		w9.Position = 3;
 		w9.Expand = false;
 		w9.Fill = false;
-		this.vbox1.Add (this.statusbar2);
-		global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.statusbar2]));
-		w10.Position = 3;
-		w10.Expand = false;
-		w10.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -136,5 +133,6 @@ public partial class MainWindow
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.OpenAction.Activated += new global::System.EventHandler (this.OnOpenActionActivated);
 		this.ExitAction.Activated += new global::System.EventHandler (this.OnExitActionActivated);
+		this.ViewAction.Activated += new global::System.EventHandler (this.OnViewActionActivated);
 	}
 }

@@ -66,18 +66,25 @@ namespace Ca.Fluxion.Transports.Data
 		/// <param name="createNew">If set to <c>true</c> create new.</param>
 		public SqliteDataBus (string path, bool createNew)
 		{
+			// force change the extension if it's set to something other than .db.
+			path = Path.ChangeExtension (path, ".db");
+
 			if (!createNew) {
 				if (File.Exists (path)) {
 					this.dbPath = path;
 					this.connection = new SqliteConnection ("Data Source=" + this.dbPath);
+				} else {
+					throw new FileNotFoundException ("Database file not found", "path");
 				}
 			} else {
 				if (File.Exists (path)) {
-					File.Delete (path);
+					this.dbPath = path;
+					this.connection = new SqliteConnection ("Data Source=" + this.dbPath);
+				} else {
+					this.dbPath = path;
+					SqliteConnection.CreateFile (this.dbPath);
+					this.connection = new SqliteConnection ("Data Source=" + this.dbPath);
 				}
-				this.dbPath = path;
-				SqliteConnection.CreateFile (this.dbPath);
-				this.connection = new SqliteConnection ("Data Source=" + this.dbPath);
 			}
 		}
 

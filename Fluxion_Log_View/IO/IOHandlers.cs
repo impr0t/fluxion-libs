@@ -1,9 +1,10 @@
 using System;
 using System.IO;
 using Ca.Fluxion.Shared;
+using Ca.Fluxion.Managers;
 using Gtk;
 
-namespace Ca.Fluxion.LogView
+namespace Ca.Fluxion.LogView.IO
 {
 	public static class IOHandlers
 	{

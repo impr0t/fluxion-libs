@@ -1,7 +1,7 @@
 using System;
 using Gtk;
 
-namespace Ca.Fluxion.LogView
+namespace Ca.Fluxion.LogView.Utility
 {
 	/// <summary>
 	/// Dialog manager class that acts as a wrapper 

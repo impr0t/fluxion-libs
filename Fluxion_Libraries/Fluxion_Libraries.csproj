@@ -49,6 +49,8 @@
     <Compile Include="Patterns\ObjectPool\Pool.cs" />
     <Compile Include="Patterns\ObjectPool\PoolableObject.cs" />
     <Compile Include="Patterns\ObjectPool\IPoolable.cs" />
+    <Compile Include="DataManagers\Models\Attributes.cs" />
+    <Compile Include="DataManagers\Models\IField.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

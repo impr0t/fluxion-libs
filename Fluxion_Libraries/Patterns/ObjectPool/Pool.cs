@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ca.Fluxion.Patterns.ObjectPool
 {
-	public abstract class Pool<T> where T : PoolableObject, new()
+	public abstract class Pool<T> where T : new()
 	{
 		private List<T> available = new List<T> ();
 		private List<T> inUse = new List<T> ();
