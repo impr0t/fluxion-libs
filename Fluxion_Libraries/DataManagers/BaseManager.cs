@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Ca.Fluxion.Managers.Data.Models;
 using Ca.Fluxion.Transports.Data;
+using System.IO;
 
 namespace Ca.Fluxion.Managers.Data
 {
@@ -11,10 +12,16 @@ namespace Ca.Fluxion.Managers.Data
 	/// </summary>
 	public abstract class BaseManager<T> : IManager<T>
 	{
+		/// <summary>
+		/// Retained list of active connections to one datasource or another.
+		/// </summary>
 		static List<IDataBus> activeConnections;
 
 		#region Private Fields
 
+		/// <summary>
+		/// Currently used databus.
+		/// </summary>
 		protected IDataBus dataBus;
 
 		#endregion
@@ -28,7 +35,7 @@ namespace Ca.Fluxion.Managers.Data
 		/// <param name="path">Path.</param>
 		protected BaseManager (ConnectionType connectionType, string path)
 		{
-			// ensure active connections is available.
+			// ensure active connections are available.
 			if (activeConnections == null) {
 				activeConnections = new List<IDataBus> ();
 			}
@@ -36,11 +43,15 @@ namespace Ca.Fluxion.Managers.Data
 			switch (connectionType) {
 			case ConnectionType.Sqlite:
 
+				// ensure our path ends with .db.
+				path = Path.ChangeExtension (path, ".db");
+
 				// always try to piggy-back on a connection.
 				foreach (var connection in activeConnections) {
 					if (connection is SqliteDataBus) {
 						if (((SqliteDataBus)connection).DbPath == path) {
 							this.dataBus = connection;
+							this.Init (typeof(T));
 							break;
 						}
 					}
@@ -48,6 +59,7 @@ namespace Ca.Fluxion.Managers.Data
 
 				if (dataBus == null) {
 					activeConnections.Add (dataBus = new SqliteDataBus (path, true));
+					this.Init (typeof(T));
 				}
 
 				break;
@@ -57,15 +69,6 @@ namespace Ca.Fluxion.Managers.Data
 		}
 
 		#endregion
-
-		/// <summary>
-		/// Init this instance.
-		/// </summary>
-		protected virtual void Init ()
-		{
-			// intentionally blank.
-			// can be overridden.
-		}
 
 		#region IManager implementation
 
@@ -88,6 +91,15 @@ namespace Ca.Fluxion.Managers.Data
 			set {
 				ConnectionState = value;
 			}
+		}
+
+		/// <summary>
+		/// Initialize a database and / or table for the specified object.
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		private void Init (Type obj)
+		{
+			this.dataBus.Init (obj);
 		}
 
 		#endregion

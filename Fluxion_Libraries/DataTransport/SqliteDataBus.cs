@@ -117,6 +117,20 @@ namespace Ca.Fluxion.Transports.Data
 		}
 
 		/// <summary>
+		/// Init this instance.
+		/// </summary>
+		public void Init (Type objType)
+		{
+			string errMessage = string.Empty;
+			SqliteDataInitializer initializer = new SqliteDataInitializer ();
+			if (initializer.Validate (objType, out errMessage)) {
+				ExecuteNonQuery (initializer.Process (objType));
+			} else {
+				throw new MissingFieldException (errMessage);
+			}
+		}
+
+		/// <summary>
 		/// Executes a NonQuery against the database.
 		/// </summary>
 		/// <returns>Integer value containing number of rows collected.</returns>
@@ -124,15 +138,18 @@ namespace Ca.Fluxion.Transports.Data
 		public int ExecuteNonQuery (string[] commands)
 		{
 			if (Open ()) {
+				int recordsAffected = 0;
 				foreach (var command in commands) {
 					using (var c = connection.CreateCommand ()) {
 						c.CommandText = command;
-						return c.ExecuteNonQuery ();
+						recordsAffected += c.ExecuteNonQuery ();
 					}
 				}
 				Close ();
+				return recordsAffected;
+			} else {
+				return 0;
 			}
-			throw new NullReferenceException ("Connection does not exist");
 		}
 
 		/// <summary>

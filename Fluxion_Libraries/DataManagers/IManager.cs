@@ -1,4 +1,5 @@
 using Ca.Fluxion.Managers.Data.Models;
+using System;
 
 namespace Ca.Fluxion.Managers.Data
 {
@@ -7,6 +8,7 @@ namespace Ca.Fluxion.Managers.Data
 	/// </summary>
 	public interface IManager<T>
 	{
+
 		#region Public Properties
 
 		/// <summary>
@@ -16,6 +18,7 @@ namespace Ca.Fluxion.Managers.Data
 		ConnectionState ConnectionState { get; set; }
 
 		#endregion
+
 	}
 }
 

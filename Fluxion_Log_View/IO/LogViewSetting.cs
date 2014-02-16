@@ -8,6 +8,9 @@ namespace Ca.Fluxion.LogView.IO
 	/// </summary>
 	public class LogViewSetting
 	{
+
+		#region Properties
+
 		/// <summary>
 		/// Gets or sets the identifier.
 		/// </summary>
@@ -37,6 +40,10 @@ namespace Ca.Fluxion.LogView.IO
 			get;
 			set;
 		}
+
+		#endregion
+
+		#region Constructors
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Fluxion_Log_View.LogViewSetting"/> class.
@@ -74,6 +81,9 @@ namespace Ca.Fluxion.LogView.IO
 			this.Description = description;
 			this.Value = value.ToString ();
 		}
+
+		#endregion
+
 	}
 }
 

@@ -17,10 +17,7 @@ namespace Ca.Fluxion.LogView.IO
 		/// <param name="path">Path.</param>
 		public SettingsManager (ConnectionType connectionType, string path) : base (connectionType, path)
 		{
-			if (dataBus.Ready) {
-				if (dataBus is SqliteDataBus) {
-				}
-			}
+
 		}
 	}
 }

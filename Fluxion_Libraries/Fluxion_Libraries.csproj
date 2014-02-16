@@ -51,6 +51,9 @@
     <Compile Include="Patterns\ObjectPool\IPoolable.cs" />
     <Compile Include="DataManagers\Models\Attributes.cs" />
     <Compile Include="DataManagers\Models\IField.cs" />
+    <Compile Include="DataTransport\IInitializer.cs" />
+    <Compile Include="DataTransport\SqliteDataInitializer.cs" />
+    <Compile Include="DataTransport\BaseDataInitializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -30,11 +30,19 @@ namespace Ca.Fluxion.Managers.Data.Models
 	[AttributeUsage (AttributeTargets.Property, AllowMultiple = false)]
 	public class PrimaryKey : Attribute
 	{
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="Ca.Fluxion.Managers.Data.Models.PrimaryKey"/> auto increments.
+		/// </summary>
+		/// <value><c>true</c> if auto increment; otherwise, <c>false</c>.</value>
 		public bool AutoIncrement {
 			get;
 			private set;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Ca.Fluxion.Managers.Data.Models.PrimaryKey"/> class.
+		/// </summary>
+		/// <param name="autoIncrement">If set to <c>true</c> auto increment.</param>
 		public PrimaryKey (bool autoIncrement = false)
 		{
 			this.AutoIncrement = autoIncrement;

@@ -1,3 +1,5 @@
+using System;
+
 namespace Ca.Fluxion.Transports.Data
 {
 	/// <summary>
@@ -20,6 +22,12 @@ namespace Ca.Fluxion.Transports.Data
 		/// </summary>
 		/// <value><c>true</c> if ready; otherwise, <c>false</c>.</value>
 		bool Ready { get; }
+
+		/// <summary>
+		/// Initialize a database and / or table for a specified type of object.
+		/// </summary>
+		/// <param name="obj">Object.</param>
+		void Init (Type obj);
 	}
 }
 
