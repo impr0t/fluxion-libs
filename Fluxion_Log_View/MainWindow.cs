@@ -8,12 +8,15 @@ using Ca.Fluxion.Managers.Data.Models;
 
 public partial class MainWindow: Gtk.Window
 {
+	private SettingsManager settingsManager;
+
 	/// <summary>
 	/// Initializes a new instance of the <see cref="MainWindow"/> class.
 	/// </summary>
 	public MainWindow () : base (Gtk.WindowType.Toplevel)
 	{
 		Build ();
+		settingsManager = new SettingsManager (ConnectionType.Sqlite, "settings");
 	}
 
 	/// <summary>
@@ -108,6 +111,9 @@ public partial class MainWindow: Gtk.Window
 	/// <param name="e">E.</param>
 	protected void OnViewActionActivated (object sender, EventArgs e)
 	{
-		SettingsManager s = new SettingsManager (ConnectionType.Sqlite, "settings");
+		settingsManager.GetSettings ();
+		SettingsDialog sd = new SettingsDialog ();
+		sd.Run ();
+		sd.Destroy ();
 	}
 }

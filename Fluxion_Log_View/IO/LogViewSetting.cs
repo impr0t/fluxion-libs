@@ -12,10 +12,20 @@ namespace Ca.Fluxion.LogView.IO
 		#region Properties
 
 		/// <summary>
+		/// Gets or sets the secton identifier.
+		/// </summary>
+		/// <value>The section identifier.</value>
+		[PrimaryKey (false), IntegerField ("sectionid")]
+		public int SectionID {
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the identifier.
 		/// </summary>
 		/// <value>The identifier.</value>
-		[PrimaryKey (true), IntegerField ("Identifier", low: 0)]
+		[PrimaryKey (true), IntegerField ("paramid", low: 0)]
 		public int Identifier {
 			get;
 			set;
@@ -25,7 +35,7 @@ namespace Ca.Fluxion.LogView.IO
 		/// Gets or sets the description.
 		/// </summary>
 		/// <value>The description.</value>
-		[CharField ("Description", maxlength: 255)]
+		[CharField ("desc", maxlength: 255)]
 		public string Description {
 			get;
 			set;
@@ -35,7 +45,7 @@ namespace Ca.Fluxion.LogView.IO
 		/// Gets or sets the value.
 		/// </summary>
 		/// <value>The value.</value>
-		[CharField ("Value")]
+		[CharField ("value")]
 		public string Value {
 			get;
 			set;
@@ -45,12 +55,18 @@ namespace Ca.Fluxion.LogView.IO
 
 		#region Constructors
 
+		public LogViewSetting (int sectionid, int id)
+		{
+			this.SectionID = sectionid;
+			this.Identifier = id;	
+		}
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Fluxion_Log_View.LogViewSetting"/> class.
 		/// </summary>
 		/// <param name="description">Description.</param>
 		/// <param name="value">Value.</param>
-		public LogViewSetting (string description, string value)
+		public LogViewSetting (int sectionid, int id, string description, string value) : this (sectionid, id)
 		{
 			this.Description = description;
 			this.Value = value;
@@ -61,7 +77,7 @@ namespace Ca.Fluxion.LogView.IO
 		/// </summary>
 		/// <param name="description">Description.</param>
 		/// <param name="value">If set to <c>true</c> value.</param>
-		public LogViewSetting (string description, bool value)
+		public LogViewSetting (int sectionid, int id, string description, bool value) : this (sectionid, id)
 		{
 			this.Description = description;
 
@@ -76,7 +92,7 @@ namespace Ca.Fluxion.LogView.IO
 		/// </summary>
 		/// <param name="description">Description.</param>
 		/// <param name="value">Value.</param>
-		public LogViewSetting (string description, int value)
+		public LogViewSetting (int sectionid, int id, string description, int value) : this (sectionid, id)
 		{
 			this.Description = description;
 			this.Value = value.ToString ();

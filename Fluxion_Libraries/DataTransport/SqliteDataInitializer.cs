@@ -1,8 +1,8 @@
 using System;
-using Mono.Data.Sqlite;
-using System.Reflection;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using Mono.Data.Sqlite;
 using Ca.Fluxion.Managers.Data.Models;
 
 namespace Ca.Fluxion.Transports.Data
@@ -19,23 +19,31 @@ namespace Ca.Fluxion.Transports.Data
 		/// <typeparam name="T">The 1st type parameter.</typeparam>
 		public override string[] Process (Type obj)
 		{
-			string tableName = obj.Name;
+			// get the tablename for the object.
+			string tableName = obj.Name.ToLower ();
 
+			// start create table statement creation.
 			StringBuilder sb = new StringBuilder ();
 			sb.Append ("CREATE TABLE IF NOT EXISTS" + " \"" + tableName + "\"");
 			sb.Append (" (");
 
 			// extract the property info from this type.
+			string primaryKey = string.Empty;
+
 			PropertyInfo[] propertyInfo = obj.GetProperties ();
 			foreach (var pInfo in propertyInfo) {
 
-				bool applyPrimaryKey = false;
+				// will be populated with the field name of the property.
+				string fieldName = string.Empty;
+
+				// go through all attributes packed on the object.
 				foreach (var attribute in pInfo.GetCustomAttributes(true)) {
 
 					// isolate the column name.
 					if (attribute is IField) {
+						fieldName = ((IField)attribute).ColumnName;
 						sb.Append ("\"");
-						sb.Append (((IField)attribute).ColumnName);
+						sb.Append (fieldName);
 						sb.Append ("\"");
 						sb.Append (" ");
 					}
@@ -59,19 +67,18 @@ namespace Ca.Fluxion.Transports.Data
 					}
 
 					if (attribute is PrimaryKey) {
-						applyPrimaryKey = true;
+						primaryKey += fieldName + ",";
 					}
 				}
-
-				if (applyPrimaryKey) {
-					sb.Append ("primary key");
-				}
-
+			
 				sb.Append (",");
 			}
+		
+			// sanitize the primary key call.
+			primaryKey = primaryKey.TrimEnd (',');
 
-			//remove the last comma.
-			sb.Remove (sb.Length - 1, 1);
+			// apply the primary key field to the query.
+			sb.Append ("PRIMARY KEY (" + primaryKey + ")");
 
 			// finish the statement.
 			sb.Append (");");

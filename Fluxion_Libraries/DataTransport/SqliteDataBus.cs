@@ -153,6 +153,16 @@ namespace Ca.Fluxion.Transports.Data
 		}
 
 		/// <summary>
+		/// Executes the non query.
+		/// </summary>
+		/// <returns>The non query.</returns>
+		/// <param name="command">Command.</param>
+		public int ExecuteNonQuery (string command)
+		{
+			return ExecuteNonQuery (new string[]{ command });
+		}
+
+		/// <summary>
 		/// Executes a standard query against the database.
 		/// callBack method is used for working with the response.
 		/// </summary>
