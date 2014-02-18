@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
 using Ca.Fluxion.Managers.Data.Models;
 using Ca.Fluxion.Transports.Data;
-using System.IO;
 
 namespace Ca.Fluxion.Managers.Data
 {

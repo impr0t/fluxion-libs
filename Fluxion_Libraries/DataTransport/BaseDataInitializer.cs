@@ -4,11 +4,19 @@ using Ca.Fluxion.Managers.Data.Models;
 
 namespace Ca.Fluxion.Transports.Data
 {
+	/// <summary>
+	/// Consumes an object type and produces persistant data stores.
+	/// </summary>
 	public class BaseDataInitializer : IInitializer
 	{
 
 		#region IInitializer implementation
 
+		/// <summary>
+		/// Validate a specific type.  This method checks properties marked with Field attributes. 
+		/// </summary>
+		/// <param name="objType">Object type.</param>
+		/// <param name="message">Message.</param>
 		public bool Validate (Type objType, out string message)
 		{
 			PropertyInfo[] propCollection = objType.GetProperties ();

@@ -25,7 +25,7 @@ namespace Ca.Fluxion.Managers.Data.Models
 	}
 
 	/// <summary>
-	/// Marks a field as being a primary key.
+	/// Marks a field as being part of the primary key for the table.
 	/// </summary>
 	[AttributeUsage (AttributeTargets.Property, AllowMultiple = false)]
 	public class PrimaryKey : Attribute
@@ -50,7 +50,7 @@ namespace Ca.Fluxion.Managers.Data.Models
 	}
 
 	/// <summary>
-	/// Marked a field as being of character nature.
+	/// Marks a field as being of varchar / string nature.
 	/// </summary>
 	[AttributeUsage (AttributeTargets.Property, AllowMultiple = false)]
 	public class CharField : ColumnAttribute
@@ -120,6 +120,7 @@ namespace Ca.Fluxion.Managers.Data.Models
 	[AttributeUsage (AttributeTargets.Property, AllowMultiple = false)]
 	public class BooleanField : ColumnAttribute
 	{
+		//todo: boolean specific implementations.
 	}
 }
 

@@ -9,6 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Ca.Fluxion</RootNamespace>
     <AssemblyName>Fuxion_Libraries</AssemblyName>
+    <Description>Libraries providing support functions for work with databases
+and logging.</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

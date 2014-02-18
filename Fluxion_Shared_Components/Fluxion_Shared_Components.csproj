@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Fluxion_Shared_Components</RootNamespace>
     <AssemblyName>Fluxion_Shared_Components</AssemblyName>
+    <Description>Components shared between all any library or client application.</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -4,7 +4,7 @@ using System;
 namespace Ca.Fluxion.Managers.Data
 {
 	/// <summary>
-	/// Manager interface, all managers are to use this interface.
+	/// Manager interface, all managers are to implement this interface.
 	/// </summary>
 	public interface IManager<T>
 	{

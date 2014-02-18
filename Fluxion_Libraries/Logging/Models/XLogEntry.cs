@@ -4,6 +4,9 @@ using Ca.Fluxion.Shared;
 
 namespace Ca.Fluxion
 {
+	/// <summary>
+	/// Model representing an entry for the xlog component.
+	/// </summary>
 	public class XLogEntry
 	{
 		/// <summary>

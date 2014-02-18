@@ -9,6 +9,9 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Fluxion_Log_View</RootNamespace>
     <AssemblyName>Fluxion_Log_View</AssemblyName>
+    <Description>Sample application to test both logging component and
+database components.  This is still in a very early stage of
+development.  Used GTK# for user interfaces.</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
