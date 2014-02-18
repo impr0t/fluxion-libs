@@ -7,8 +7,8 @@ namespace sandbox
 	{
 		public static void Main (string[] args)
 		{
-			designPatternSandbox d = new designPatternSandbox ();
-			Console.ReadLine ();
+			dbSandbox db = new dbSandbox ();
+			db.Write ();
 		}
 	}
 }

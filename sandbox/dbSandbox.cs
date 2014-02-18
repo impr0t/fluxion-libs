@@ -10,7 +10,10 @@ namespace sandbox
 
 		public dbSandbox ()
 		{
-			log = new XLog (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "test");
+			//log = new XLog (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "test");
+			XLogDB db = new XLogDB ("log", true);
+			db.Init ();
+			log = new XLog (db);
 		}
 
 		public void Write ()
