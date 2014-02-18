@@ -111,9 +111,10 @@ public partial class MainWindow: Gtk.Window
 	/// <param name="e">E.</param>
 	protected void OnViewActionActivated (object sender, EventArgs e)
 	{
-		settingsManager.GetSettings ();
-		SettingsDialog sd = new SettingsDialog ();
-		sd.Run ();
+		SettingsDialog sd = new SettingsDialog (settingsManager);
+		if (sd.Run () == (int)Gtk.ResponseType.Ok) {
+			//todo: reload settings.
+		}
 		sd.Destroy ();
 	}
 }

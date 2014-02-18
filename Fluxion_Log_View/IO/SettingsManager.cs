@@ -12,6 +12,18 @@ namespace Ca.Fluxion.LogView.IO
 	/// </summary>
 	public class SettingsManager : BaseManager<LogViewSetting>
 	{
+		/// <summary>
+		/// The insert format.
+		/// </summary>
+		private const string InsertFormat = "INSERT INTO logviewsetting VALUES (\"{0}\", \"{1}\", \"{2}\", \"{3}\");";
+		/// <summary>
+		/// The default settings.
+		/// </summary>
+		private string[] initialSettingsStatements;
+		/// <summary>
+		/// Private store for our settings snapshot, where key is section, and value is 
+		/// settings under that section.
+		/// </summary>
 		private Dictionary<int, List<LogViewSetting>> settingSnapshot;
 
 		/// <summary>
@@ -22,16 +34,33 @@ namespace Ca.Fluxion.LogView.IO
 		public SettingsManager (ConnectionType connectionType, string path) : base (connectionType, path)
 		{
 			settingSnapshot = new Dictionary<int, List<LogViewSetting>> ();
+
+			initialSettingsStatements = new string[] { 
+				string.Format (InsertFormat, 0, 0, "Error Foreground Color", "Black"),
+				string.Format (InsertFormat, 0, 1, "Debug Foreground Color", "Orange"),
+				string.Format (InsertFormat, 0, 2, "General Foreground Color", "Black"),
+				string.Format (InsertFormat, 0, 3, "Error Background Color", "Red"),
+				string.Format (InsertFormat, 0, 4, "Debug Background Color", "White"),
+				string.Format (InsertFormat, 0, 5, "General Background Color", "White"),
+			};
 		}
 
 		/// <summary>
-		/// Queries the database and populates the current setting snapshot.
+		/// Gets the settings.
 		/// </summary>
-		/// <returns>The updated settings snapshot.</returns>
-		public Dictionary<int, List<LogViewSetting>> GetSettings ()
+		/// <returns>The settings.</returns>
+		/// <param name="refresh">If set to <c>true</c> refresh.</param>
+		public Dictionary<int, List<LogViewSetting>> GetSettings (bool refresh)
 		{
-			if (dataBus is SqliteDataBus) {
-				((SqliteDataBus)dataBus).ExecuteQuery ("SELECT * FROM logviewsetting;", CreateSnapshot);
+			if (refresh) {
+				if (dataBus is SqliteDataBus) {
+					((SqliteDataBus)dataBus).ExecuteQuery ("SELECT * FROM logviewsetting;", CreateSnapshot);
+				}
+			}
+
+			// populate our table if no settings exist.
+			if (settingSnapshot.Count == 0) {
+				InitializeSettings ();
 			}
 
 			return settingSnapshot;
@@ -50,6 +79,16 @@ namespace Ca.Fluxion.LogView.IO
 		}
 
 		/// <summary>
+		/// Intializes the settings.
+		/// </summary>
+		public void InitializeSettings ()
+		{
+			if (dataBus is SqliteDataBus) {
+				((SqliteDataBus)dataBus).ExecuteNonQuery (initialSettingsStatements);
+			}
+		}
+
+		/// <summary>
 		/// Creates the snapshot.
 		/// </summary>
 		/// <param name="reader">Reader.</param>
@@ -60,7 +99,13 @@ namespace Ca.Fluxion.LogView.IO
 			}
 
 			while (reader.Read ()) {
-				var setting = new LogViewSetting (reader.GetInt32 (0), reader.GetInt32 (1), reader.GetString (2), reader.GetString (3));
+
+				// create a new settings object.
+				var setting = new LogViewSetting (reader.GetInt32 (0), 
+					              reader.GetInt32 (1), 
+					              reader.GetString (2), 
+					              reader.GetString (3));
+
 				this.AddSetting (setting);
 			}
 		}
@@ -89,7 +134,7 @@ namespace Ca.Fluxion.LogView.IO
 		/// <param name="setting">Setting.</param>
 		private void ModifySetting (LogViewSetting setting)
 		{
-			var pull = settingSnapshot [setting.SectionID].Find (a => a.SectionID == setting.SectionID && a.Identifier == setting.Identifier);
+			var pull = FindSetting (setting.SectionID, setting.Identifier);
 			if (pull != null) {
 				pull.Description = setting.Description;
 				pull.Value = setting.Value;
@@ -103,7 +148,18 @@ namespace Ca.Fluxion.LogView.IO
 		/// <param name="setting">Setting.</param>
 		private bool CanAddSetting (LogViewSetting setting)
 		{
-			return settingSnapshot [setting.SectionID].Find (a => a.SectionID == setting.SectionID && a.Identifier == setting.Identifier) == null;
+			return FindSetting (setting.SectionID, setting.Identifier) == null;
+		}
+
+		/// <summary>
+		/// Finds a specific setting inside of the setting snapshot.
+		/// </summary>
+		/// <returns>The setting.</returns>
+		/// <param name="sectionID">Section identifier.</param>
+		/// <param name="id">Secondary Identifier.</param>
+		private LogViewSetting FindSetting (int sectionID, int id)
+		{
+			return settingSnapshot [sectionID].Find (a => a.SectionID == sectionID && a.Identifier == id);
 		}
 	}
 }
