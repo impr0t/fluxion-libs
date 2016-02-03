@@ -1,0 +1,8 @@
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\bin\x86\Debug\Fuxion_Libraries.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\bin\x86\Debug\Fuxion_Libraries.pdb
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\bin\x86\Debug\Fluxion_Shared_Components.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\bin\x86\Debug\Mono.Data.Sqlite.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\bin\x86\Debug\Fluxion_Shared_Components.pdb
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\obj\x86\Debug\Fluxion_Libraries.csprojResolveAssemblyReference.cache
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\obj\x86\Debug\Fuxion_Libraries.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries\obj\x86\Debug\Fuxion_Libraries.pdb

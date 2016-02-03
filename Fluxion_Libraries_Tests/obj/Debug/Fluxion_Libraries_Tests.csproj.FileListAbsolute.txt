@@ -1,0 +1,10 @@
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\obj\Debug\Fluxion_Libraries_Tests.csprojResolveAssemblyReference.cache
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Fluxion_Libraries_Tests.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Fluxion_Libraries_Tests.pdb
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Fuxion_Libraries.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Mono.Data.Sqlite.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Fluxion_Shared_Components.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Fuxion_Libraries.pdb
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\bin\Debug\Fluxion_Shared_Components.pdb
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\obj\Debug\Fluxion_Libraries_Tests.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Libraries_Tests\obj\Debug\Fluxion_Libraries_Tests.pdb

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,9 +30,19 @@ and logging.</Description>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\lib\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
@@ -58,15 +68,7 @@ and logging.</Description>
     <Compile Include="DataTransport\BaseDataInitializer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="DataManagers\" />
-    <Folder Include="DataManagers\Models\" />
-    <Folder Include="DataTransport\" />
-    <Folder Include="Logging\" />
-    <Folder Include="Logging\Models\" />
-    <Folder Include="Patterns\" />
-    <Folder Include="Patterns\ObjectPool\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Fluxion_Shared_Components\Fluxion_Shared_Components.csproj">
       <Project>{D3F01C08-CB84-446E-9261-B8F2E1FA69AC}</Project>

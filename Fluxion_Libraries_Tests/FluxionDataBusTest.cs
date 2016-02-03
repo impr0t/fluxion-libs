@@ -10,7 +10,7 @@ namespace FluxionLibrariesTests
 	{
 		SqliteDataBus dataBus;
 
-		[TestFixtureSetUp ()]
+		[OneTimeSetUp ()]
 		public void TestDataBusContructor ()
 		{
 			dataBus = new SqliteDataBus (Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), "test.db"), true);

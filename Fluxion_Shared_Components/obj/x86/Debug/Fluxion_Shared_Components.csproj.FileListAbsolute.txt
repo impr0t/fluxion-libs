@@ -1,0 +1,4 @@
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Shared_Components\bin\x86\Debug\Fluxion_Shared_Components.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Shared_Components\bin\x86\Debug\Fluxion_Shared_Components.pdb
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Shared_Components\obj\x86\Debug\Fluxion_Shared_Components.dll
+C:\Users\brmil\Documents\git_practise\fluxion-libs\Fluxion_Shared_Components\obj\x86\Debug\Fluxion_Shared_Components.pdb

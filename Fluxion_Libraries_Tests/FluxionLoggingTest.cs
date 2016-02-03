@@ -9,7 +9,7 @@ namespace FluxionLibrariesTests
 	{
 		private XLog log;
 
-		[TestFixtureSetUp ()]
+		[OneTimeSetUp ()]
 		public void TestLogConstructor ()
 		{
 			log = new XLog ();
