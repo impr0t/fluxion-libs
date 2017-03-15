@@ -1,3 +1,5 @@
+# This is ancient, unfinished, and unmaintained.
+
 # FluxionLibs 
 *Application support libraries for C# + Mono Framework.  Leverages GTK# for user interfaces.*
 
